@@ -200,7 +200,7 @@ const Hero = () => (
     </div>
     <div className="hero-right">
       <img
-        src="/avatar.png"
+        src={`${import.meta.env.BASE_URL}avatar.png`}
         alt="Vũ Hà Nhật Nguyên"
         className="hero-photo"
       />
@@ -301,7 +301,7 @@ const About = () => (
     <div className="container about-grid">
       <div className="about-img-wrap">
         <img
-          src="/about-me.png"
+          src={`${import.meta.env.BASE_URL}about-me.png`}
           alt="About Vũ Hà Nhật Nguyên"
           className="about-img"
         />
