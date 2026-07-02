@@ -29,7 +29,8 @@ ul { list-style: none; }
 }
 .header-left { display: flex; align-items: center; gap: 14px; margin-right: auto; }
 .logo-img {
-  height: 40px; width: auto;
+  height: 52px;
+  width: 52px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
