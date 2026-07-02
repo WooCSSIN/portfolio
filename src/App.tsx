@@ -1,7 +1,7 @@
 
 import {
   Github, Linkedin, Mail, Download, ArrowUpRight,
-  MapPin
+  MapPin, Trophy, Users
 } from 'lucide-react';
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
@@ -73,6 +73,11 @@ const EXPERIENCES = [
 
 const AWARDS = [
   {
+    title: 'Grab the Future Hackathon 2026',
+    issuer: 'Grab Viet Nam & UNDP Vietnam',
+    date: 'Thg 7 2026'
+  },
+  {
     title: 'Sinh Viên 5 Tốt cấp Trường',
     issuer: 'Trường Đại học Giao thông vận tải TP.HCM',
     date: 'Thg 5 2026'
@@ -83,6 +88,23 @@ const AWARDS = [
     date: 'Thg 5 2026'
   }
 ];
+
+const HACKATHON = {
+  name: 'Grab the Future Hackathon 2026',
+  subtitle: 'Digital Innovation for Sustainable Urban Living',
+  organizers: 'Grab Viet Nam & UNDP Vietnam',
+  date: 'Tháng 7, 2026',
+  location: 'Ho Chi Minh City, Vietnam',
+  cert: `${import.meta.env.BASE_URL}hackathon-cert.png`,
+  teamPhoto: `${import.meta.env.BASE_URL}hackathon-team.png`,
+  description:
+    'Tham gia và hoàn thành thành công chương trình Grab the Future Hackathon 2026 — được đồng tổ chức bởi Grab Việt Nam và Chương trình Phát triển Liên Hợp Quốc (UNDP) tại Việt Nam, với chủ đề "Đổi mới kỹ thuật số vì cuộc sống đô thị bền vững".',
+  highlights: [
+    'Giải quyết bài toán đô thị thông minh bằng công nghệ AI & Data',
+    'Làm việc nhóm trong môi trường hackathon cường độ cao',
+    'Co-hosted bởi Grab Viet Nam và UNDP Vietnam',
+  ],
+};
 
 const PROJECTS = [
   {
@@ -155,7 +177,11 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-        <span className="logo-serif">VN</span>
+        <img
+          src={`${import.meta.env.BASE_URL}logo.png`}
+          alt="VN logo"
+          className="logo-img"
+        />
         <span className="logo-label">Nguyen's Portfolio</span>
       </div>
       <nav className="header-nav">
@@ -280,8 +306,8 @@ const Awards = () => (
       </h2>
       <div className="awards-list">
         {AWARDS.map((a, i) => (
-          <div key={i} className="award-card">
-            <div className="award-icon">🏆</div>
+          <div key={i} className={`award-card${i === 0 ? ' award-card-featured' : ''}`}>
+            <div className="award-icon">{i === 0 ? '🚀' : '🏆'}</div>
             <div className="award-info">
               <h3 className="award-title">{a.title}</h3>
               <p className="award-issuer">{a.issuer}</p>
@@ -289,6 +315,62 @@ const Awards = () => (
             <div className="award-date">{a.date}</div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+);
+
+// ─── HACKATHON ────────────────────────────────────────────────────────────────
+
+const Hackathon = () => (
+  <section id="hackathon" className="section-dark hackathon-section">
+    <div className="container">
+      <h2 className="section-heading light">
+        <span className="heading-light-on-dark">Hackathon </span>
+        <span className="heading-bold-on-dark">Experience</span>
+      </h2>
+
+      <div className="hackathon-hero">
+        {/* Left: Info */}
+        <div className="hackathon-info">
+          <div className="hackathon-badge">
+            <Trophy size={18} />
+            <span>Certificate of Participation</span>
+          </div>
+          <h3 className="hackathon-name">{HACKATHON.name}</h3>
+          <p className="hackathon-subtitle">{HACKATHON.subtitle}</p>
+          <div className="hackathon-meta">
+            <span>📅 {HACKATHON.date}</span>
+            <span><MapPin size={13} style={{display:'inline', verticalAlign:'middle'}}/> {HACKATHON.location}</span>
+            <span>🏢 {HACKATHON.organizers}</span>
+          </div>
+          <p className="hackathon-desc">{HACKATHON.description}</p>
+          <ul className="hackathon-highlights">
+            {HACKATHON.highlights.map((h, i) => <li key={i}>{h}</li>)}
+          </ul>
+        </div>
+
+        {/* Right: Certificate */}
+        <div className="hackathon-cert-wrap">
+          <img
+            src={HACKATHON.cert}
+            alt="Certificate of Participation – Grab the Future Hackathon 2026"
+            className="hackathon-cert-img"
+          />
+        </div>
+      </div>
+
+      {/* Team Photo */}
+      <div className="hackathon-team-wrap">
+        <div className="hackathon-team-label">
+          <Users size={18} />
+          <span>Team Photo</span>
+        </div>
+        <img
+          src={HACKATHON.teamPhoto}
+          alt="Grab the Future Hackathon 2026 – Team Photo"
+          className="hackathon-team-img"
+        />
       </div>
     </div>
   </section>
@@ -458,6 +540,7 @@ export default function App() {
       <Hero />
       <Skills />
       <Experience />
+      <Hackathon />
       <Awards />
       <About />
       <Projects />
